@@ -23,7 +23,7 @@ jobs:
           java-version: '11'
 
       - name: Running Test Automation Framework with Maven
-        run: mvn test -X -Dbrowser=chrome -DlambdaTest=true -Dheadless=false
+        run: mvn test -X -Dbrowser=chrome -DisLambdaTest=true -DisHeadless=false
 
       - name: Upload Test Archive logs
         if: always()
