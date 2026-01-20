@@ -185,12 +185,13 @@ Use Maven Surefire Plugin with system properties to control execution behavior.
 
 ## 👤 Author
 
-**Your Name**
-Keerthana Telaprolu
+**Keerthana Telaprolu**
+
 
 ---
 
 ## 📄 License
 
 This project is licensed under the MIT License.
+
 
