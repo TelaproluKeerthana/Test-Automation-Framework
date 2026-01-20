@@ -1,4 +1,4 @@
-name: Test Automation WorkFlow
+name: Test Automation Workflow
 
 on:
   schedule:
@@ -66,7 +66,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         folder: public/extent-reports/
-        token: ${{ secrets.PAT}}
+        token: ${{ secrets.PAT }}
         clean: true
        
 
