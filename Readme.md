@@ -136,7 +136,7 @@ public void loginTest(User user) {
 
 ## 📸 Screenshots on Failure
 
-Screenshots are automatically captured on test failure using a TestNG listener. Screenshots are stored under:
+Screenshots are automatically captured on test failure using a TestNG listener.
 
 ```
 /screenshots
@@ -193,3 +193,4 @@ Keerthana Telaprolu
 ## 📄 License
 
 This project is licensed under the MIT License.
+
