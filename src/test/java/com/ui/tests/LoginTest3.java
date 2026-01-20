@@ -1,15 +1,10 @@
 package com.ui.tests;
 import static org.testng.Assert.*; // assert can also be a static import so that it doesn't get the 
 
-import org.apache.logging.log4j.Logger;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import com.constants.Browser;
-import com.ui.pages.HomePage;
 import com.ui.pojo.User;
-import com.utility.LoggerUtility;
 
 @Listeners({com.ui.listeners.TestListener.class})
 public class LoginTest3 extends TestBase {
