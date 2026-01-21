@@ -17,6 +17,7 @@ public class TestBase {
 	protected HomePage homePage;
 	Logger logger = LoggerUtility.getLogger(this.getClass());
 	private boolean isLambdaTest;
+	private boolean isHeadless;
 	
 	@Parameters({"browser", "isLambdaTest", "isHeadless"})
 	@BeforeMethod(description = "Load the homepage of the website")
@@ -32,7 +33,7 @@ public class TestBase {
 		
 		else {
 			logger.info("Load the Homepage of the website");
-			homePage = new HomePage(Browser.valueOf(browser.toUpperCase()), isHeadless);	
+			homePage = new HomePage(Browser.valueOf(browser.toUpperCase()), this.isHeadless);	
 		}
 	}
 	
