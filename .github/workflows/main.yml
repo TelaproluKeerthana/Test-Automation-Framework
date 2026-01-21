@@ -1,43 +1,93 @@
-name: Test Pipeline
+name: Test Automation Workflow
 
 on:
   schedule:
-    - cron: "30 23 * * *"   # Runs daily at 23:30 UTC
+  - cron: 00 18 * * *
   push:
-    branches: [ master ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ master ]
+    branches: [ "master" ]
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    
+    - uses: actions/checkout@v4
+    
+    - name: Set up JDK 11
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+        
+    - name: Running Test Automation Framework with Maven
+      run: mvn test -X -Dbrowser=chrome -DisLambdaTest=true -DisHeadless=false
+     
+    - name: Upload  Test logs
+      if: always()
+      uses: actions/upload-artifact@v4.4.3
+      with:
+       name: Test logs
+       path: logs/
 
-      - name: Set up JDK 11
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'temurin'
-          java-version: '11'
+    - name: Upload Screenshots as Artifacts
+      if: always()
+      uses: actions/upload-artifact@v4.4.3
+      with:
+        name: screenshots
+        path: screenshots/
 
-      - name: Running Test Automation Framework with Maven
-        run: mvn test -X -Dbrowser=chrome -DlambdaTest=true -Dheadless=false
+    - name: Upload HTML Report as Artifact
+      if: always()
+      uses: actions/upload-artifact@v4.4.3
+      with:
+        name: html-report
+        path: report.html
+       
+    - name: Test Execution Status
+      if: always()
+      run: echo "Test Execution Completed"
 
-      - name: Upload Test Archive logs
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: logs
-          path: logs/
+    - name: Copy Report to gh-pages Folder
+      if: always()
 
-      - name: Upload Archive Extent Report
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: extent-report
-          path: report.html
+      run: |
+        mkdir -p public/extent-reports
+        cp -R report.html  public/extent-reports/
+        cp -R screenshots/ public/extent-reports/screenshots/
+        ls -l
 
-      - name: Notify completion
-        run: echo "Tests completed."
+    - name: Deploy 🚀
+      if: always()
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: public/extent-reports/
+        token: ${{ secrets.PAT }}
+        clean: true
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+  
