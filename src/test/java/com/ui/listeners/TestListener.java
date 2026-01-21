@@ -18,7 +18,7 @@ import com.utility.LoggerUtility;
 
 
 public class TestListener implements ITestListener {
-	Logger logger = LoggerUtlity.getLogger(this.getClass());
+	Logger logger = LoggerUtility.getLogger(this.getClass());
 
 	ExtentSparkReporter extentSparkReporter;
 	ExtentReports extentReports;
