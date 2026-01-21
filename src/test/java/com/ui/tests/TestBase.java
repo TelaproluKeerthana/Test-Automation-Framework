@@ -25,6 +25,8 @@ public class TestBase {
 			@Optional("false") boolean isLambdaTest,
 			@Optional("false") boolean isHeadless,
 			ITestResult result){
+		this.isLambdaTest = isLambdaTest;
+		this.isHeadless = isHeadless;
 		WebDriver lambdaDriver;
 		if(this.isLambdaTest) {
 			    lambdaDriver = LambdaTestUtility.initializeLambdaTestSession(browser, result.getMethod().getMethodName());
