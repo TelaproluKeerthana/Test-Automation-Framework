@@ -145,7 +145,7 @@ public class BrowserUtility {
 		return element.getText();
 	}
 	public String takeScreenShot(String name) {
-		TakesScreenshot screenshot = (TakesScreenshot) driver.get();
+		TakesScreenshot screenshot = (TakesScreenshot) webDriver.get();
 
 		File screenshotData = screenshot.getScreenshotAs(OutputType.FILE);
 		Date date = new Date();
