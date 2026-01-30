@@ -1,35 +1,95 @@
-# Test Automation Framework
+# 🚀 Java Test Automation Framework
 
-A scalable **Test Automation Framework** built using **Java 11**, **TestNG**, and **Selenium WebDriver**, with seamless integration to **LambdaTest** for executing tests on the cloud. The framework supports **parallel execution**, follows the **Page Object Model (POM)** design pattern, and is designed to be **CI/CD friendly**.
+A **Java-based UI Test Automation Framework** built for **scalability, maintainability, and parallel execution**.  
+The framework supports both **local execution** and **cloud-based execution using LambdaTest**, and follows industry best practices such as **Page Object Model (POM)**, **data-driven testing**, and **thread-safe WebDriver management**.
 
----
-
-## 🚀 Key Features
-
-* Java 11 based automation framework
-* TestNG for test orchestration and execution
-* Selenium WebDriver for UI automation
-* LambdaTest integration for cloud-based cross-browser testing
-* Parallel execution support using TestNG
-* Page Object Model (POM) architecture
-* Data-driven testing using TestNG DataProviders
-* Thread-safe WebDriver management using ThreadLocal
-* Screenshot capture on test failures
-* Robust logging using Log4j2
-* Maven Surefire Plugin for execution control
-* Supports local and cloud execution modes
+![Java](https://img.shields.io/badge/Java-11-orange)
+![Maven](https://img.shields.io/badge/Maven-Build-blue)
+![TestNG](https://img.shields.io/badge/TestNG-Framework-red)
+![Selenium](https://img.shields.io/badge/Selenium-WebDriver-brightgreen)
+![LambdaTest](https://img.shields.io/badge/LambdaTest-Cloud%20Testing-purple)
+![CI/CD](https://img.shields.io/badge/CI%2FCD-Ready-success)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 ---
 
-## 🛠️ Tech Stack
+## 📌 Table of Contents
 
-* **Language:** Java 11
-* **Test Framework:** TestNG
-* **Automation Tool:** Selenium WebDriver
-* **Build Tool:** Maven
-* **Cloud Testing:** LambdaTest
-* **Logging:** Log4j2
-* **Design Pattern:** Page Object Model (POM)
+1. Overview  
+2. Features  
+3. Technologies Used  
+4. Prerequisites  
+5. Project Structure  
+6. Framework Architecture  
+7. Setup Instructions  
+8. Running Tests  
+9. Parallel Execution  
+10. Data-Driven Testing  
+11. WebDriver Management  
+12. Screenshots & Logging  
+13. Reports  
+14. CI/CD Integration  
+
+---
+
+## 📖 Overview
+
+This framework is designed to automate **web UI test cases** using **Selenium WebDriver** and **TestNG**.  
+It is optimized for:
+
+- Parallel execution  
+- Cross-browser testing  
+- CI/CD pipeline integration  
+- Cloud execution via LambdaTest  
+
+The architecture ensures **clean separation of concerns**, **reusability**, and **ease of maintenance**.
+
+---
+
+## ✨ Features
+
+- Java 11 based automation framework  
+- Selenium WebDriver for UI automation  
+- TestNG for test orchestration  
+- Page Object Model (POM) design pattern  
+- Thread-safe WebDriver using ThreadLocal  
+- Parallel execution using TestNG  
+- Data-driven testing using DataProviders  
+- Cross-browser support  
+- LambdaTest cloud execution  
+- Screenshot capture on test failures  
+- Logging using Log4j2  
+- Maven Surefire Plugin for execution control  
+- CI/CD ready design  
+
+---
+
+## 🛠 Technologies Used
+
+- Java 11  
+- Selenium WebDriver  
+- TestNG  
+- Maven  
+- LambdaTest  
+- Log4j2  
+- Page Object Model (POM)  
+
+---
+
+## ⚙️ Prerequisites
+
+Ensure the following are installed:
+
+- **Java 11**  
+  `JAVA_HOME` must be configured
+
+- **Maven**  
+  Download: https://maven.apache.org/download.cgi
+
+- **Browsers (Local Execution)**  
+  Chrome / Edge / Firefox
+
+- **LambdaTest Account** (For cloud execution)
 
 ---
 
@@ -38,61 +98,76 @@ A scalable **Test Automation Framework** built using **Java 11**, **TestNG**, an
 ```
 ├── src/main/java
 ├── src/test/java
-|   ├── com.constants        # Enums and constants (Browser, Environment)
-│   ├── com.ui.pages         # Page Object classes
-│   ├── com.utility          # Utilities (Browser, Logger, JSON, LambdaTest)
-│   ├── com.ui.tests         # Test classes
-│   ├── com.ui.listeners     # TestNG listeners (Retry, Screenshot, Reporting)
-│   ├── com.ui.dataproviders # Data providers for tests
+│   ├── com.constants          # Enums and constants (Browser, Environment)
+│   ├── com.ui.pages           # Page Object classes
+│   ├── com.utility            # Utilities (Driver, Logger, Config, LambdaTest)
+│   ├── com.ui.tests           # Test classes
+│   ├── com.ui.listeners       # TestNG listeners (Retry, Screenshot, Reporting)
+│   ├── com.ui.dataproviders   # Data providers
 │
-├── testng.xml               # TestNG suite configuration
-├── pom.xml                  # Maven dependencies and plugins
-└── README.md                # Project documentation
+├── testData                   # External test data
+├── testng.xml                 # TestNG suite configuration
+├── pom.xml                    # Maven configuration
+└── README.md                  # Documentation
 ```
 
 ---
 
-## ⚙️ Setup & Prerequisites
+## 🏗 Framework Architecture
 
-### Prerequisites
-
-* Java 11 installed
-* Maven installed
-* Chrome / Edge / Firefox browsers (for local execution)
-* LambdaTest account (for cloud execution)
+```
+Test Classes
+     ↓
+TestNG
+     ↓
+Driver Factory (ThreadLocal)
+     ↓
+Browser (Local / LambdaTest)
+     ↓
+Page Objects
+     ↓
+Utilities (Logger, Config, Screenshots)
+```
 
 ---
 
-## 🔧 Configuration
+## 🔧 Setup Instructions
 
-### LambdaTest Configuration
+### Clone the Repository
 
-Set your LambdaTest credentials as environment variables:
+```bash
+git clone <your-repository-url>
+cd Test-Automation-Framework
+```
+
+---
+
+### 🔐 LambdaTest Configuration
+
+Set LambdaTest credentials as environment variables:
 
 ```bash
 export LT_USERNAME=your_username
 export LT_ACCESS_KEY=your_access_key
 ```
 
-(or set them in your system / CI environment)
-
 ---
 
 ## ▶️ Running Tests
 
-### 1️⃣ Run tests locally
+### Run Tests Locally
 
 ```bash
 mvn test
 ```
 
-### 2️⃣ Run tests with parameters from the terminal
+### Run Tests with Parameters
 
 ```bash
 mvn test -Dbrowser=chrome -Denvironment=qa -DisLambdaTest=false
 ```
 
-### 3️⃣ Run tests on LambdaTest (Cloud)
+### Run Tests on LambdaTest (Cloud)
 
 ```bash
 mvn test -Dbrowser=chrome -DisLambdaTest=true
@@ -100,33 +175,34 @@ mvn test -Dbrowser=chrome -DisLambdaTest=true
 
 ---
 
-## 🔁 Parallel Execution
+## ⚡ Parallel Execution
 
-Parallel execution is enabled using TestNG. You can control parallelism from `testng.xml`:
+Parallel execution is configured using **TestNG** in `testng.xml`:
 
 ```xml
 <suite name="UI Automation Suite" parallel="methods" thread-count="3">
     <test name="Regression Tests">
         <classes>
-            <class name="com.ui.tests.LoginTest" />
+            <class name="com.ui.tests.LoginTest"/>
         </classes>
     </test>
 </suite>
 ```
 
-The framework uses **ThreadLocal WebDriver** to ensure thread safety during parallel runs.
+✔ Each test runs in an isolated browser instance  
+✔ Thread safety ensured using `ThreadLocal<WebDriver>`
 
 ---
 
 ## 📊 Data-Driven Testing
 
-Data-driven tests are implemented using **TestNG DataProviders**.
-
-Example:
+Implemented using **TestNG DataProviders**:
 
 ```java
-@Test(dataProvider = "LoginTestDataProvider",
-      dataProviderClass = LoginDataProvider.class)
+@Test(
+    dataProvider = "LoginTestDataProvider",
+    dataProviderClass = LoginDataProvider.class
+)
 public void loginTest(User user) {
     // test logic
 }
@@ -134,64 +210,50 @@ public void loginTest(User user) {
 
 ---
 
-## 📸 Screenshots on Failure
+## 🧵 WebDriver Management
 
-Screenshots are automatically captured on test failure using a TestNG listener.
-
-```
-/screenshots
-```
+- WebDriver instances are managed using `ThreadLocal<WebDriver>`
+- Each test thread receives a dedicated browser instance
+- Prevents driver collisions during parallel execution
+- Supports both local and LambdaTest remote drivers
 
 ---
 
-## 🧪 Reporting & Logging
+## 📸 Screenshots & Logging
 
-* **Log4j2** is used for logging
-* Logs include browser actions, test lifecycle events, and failures
-* Designed to be easily extendable to reporting tools like ExtentReports or Allure
+### Screenshots
+
+- Captured automatically on test failure  
+- Stored under `/screenshots`
+
+### Logging
+
+- Implemented using **Log4j2**  
+- Logs generated during test execution  
+- Stored under `/logs`
+
+---
+
+## 📈 Reports
+
+The framework is easily extensible to support:
+
+- Extent Reports  
+- Allure Reports  
 
 ---
 
 ## 🔄 CI/CD Integration
 
-The framework is CI/CD-ready and can be easily integrated with:
+This framework is **CI/CD ready** and integrates seamlessly with:
 
-* Jenkins
-* GitHub Actions
-* GitLab CI
+- Jenkins  
+- GitHub Actions  
+- GitLab CI  
 
-Use Maven Surefire Plugin with system properties to control execution behavior.
-
----
-
-## 🧠 Best Practices Followed
-
-* Clean separation of test logic and page logic
-* No WebDriver initialization inside test classes
-* Centralized driver lifecycle management
-* Thread-safe execution
-* Configurable execution via Maven
-
----
-
-## 📌 Future Enhancements
-
-* Extent / Allure report integration
-* Docker support
-* API automation module
-* Visual regression testing
-
----
+Execution behavior is controlled via **Maven Surefire Plugin** and system properties.
 
 ## 👤 Author
 
-**Keerthana Telaprolu**
-
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
-
+Keerthana Telaprolu 
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin)](https://www.linkedin.com/in/keerthanatelaprolu/)
